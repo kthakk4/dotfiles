@@ -1,0 +1,8 @@
+[user]
+	name = Kushan Thakkar
+	email = kushan@
+[core]
+	editor = nvim
+	pager = less
+[init]
+	defaultBranch = main
