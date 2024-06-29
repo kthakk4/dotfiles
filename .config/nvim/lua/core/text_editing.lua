@@ -1,0 +1,6 @@
+-- local text_edit = vim.api.nvim_create_augroup("FileType", {clear = true})
+-- vim.api.nvim_create_autocmd("FileType", {
+--    pattern = {"text", "markdown", "md"},
+--    command = "setlocal spell spelllang=en_us spellfile=~/.config/nvim/spell/en.utf-8.add", 
+--    group = text_edit
+--})
