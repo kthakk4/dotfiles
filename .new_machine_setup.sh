@@ -2,7 +2,7 @@
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
 #get homebrew packages
-brew install wget xz pynev neovim git gh tree-sitter fzf openssl readline qt ranger zsh-autocomplete zsh-syntax-highlighting
+brew install wget xz pyenv neovim git gh tree-sitter fzf openssl readline qt ranger zsh-autocomplete zsh-syntax-highlighting
 brew install --cask anaconda font-hack-nerd-font karabiner-elements iterm2 1password-cli 1password maccy obsidian selfcontrol rectangle microsoft-office
 
 # configuration and dotfiles for variosu things
