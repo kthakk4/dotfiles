@@ -8,7 +8,7 @@ brew install --cask anaconda font-hack-nerd-font karabiner-elements iterm2 1pass
 # configuration and dotfiles for variosu things
 # using the approach described here: https://www.atlassian.com/git/tutorials/dotfiles
 # uses a bare git repo camed dotfile - working tree is is the home folder. only add the dotfiles you want to track to the git repo. use a custom git alias named dotfiles for all the operations. keep committing and save the master on github
-git clone --bare <git-repo-url> $HOME/dotfiles
+git clone --bare https://github.com/kthakk4/dotfiles.git $HOME/dotfiles
 alias dotfiles='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 mkdir -p .config-backup && \
 dotfiles checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | \
