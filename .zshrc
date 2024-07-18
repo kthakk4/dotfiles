@@ -1,5 +1,5 @@
 # Plugins
-source /opt/homebrew/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+source $(brew --prefix)/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
 # Enable colors
 autoload -U colors && colors
@@ -31,5 +31,5 @@ alias dotfiles='/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME'
 fn() {du -a ~/Documents/* | awk '{print $2}' | fzf | xargs -r nvim ;} #fuzzy find and open in docs 
 
 # Plugins (some must be at the end)
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source <(fzf --zsh)
