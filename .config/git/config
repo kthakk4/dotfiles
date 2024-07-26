@@ -6,3 +6,5 @@
 	pager = less
 [init]
 	defaultBranch = main
+[alias]
+	tree = log --all --graph --decorate --pretty=oneline --abbrev-commit
