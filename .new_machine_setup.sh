@@ -3,7 +3,14 @@
 
 #get homebrew packages
 brew install wget xz pyenv neovim git gh tree-sitter fzf openssl readline qt ranger zsh-autocomplete zsh-syntax-highlighting
-brew install --cask anaconda font-hack-nerd-font karabiner-elements iterm2 1password-cli 1password maccy obsidian selfcontrol rectangle microsoft-office
+brew install --cask font-hack-nerd-font karabiner-elements iterm2 1password-cli 1password maccy obsidian selfcontrol rectangle microsoft-office
+
+#install python environments and set default
+pyenv install 3.10
+pyenv global 3.10
+
+#install python packages
+pip install --upgrade pip jupyter matplotlib numpy pandas scipy scikit-learn torch torchvision
 
 # configuration and dotfiles for variosu things
 # using the approach described here: https://www.atlassian.com/git/tutorials/dotfiles
@@ -17,12 +24,6 @@ xargs -I{} mv {} .config-backup/{}
 dotfiles checkout
 dotfiles config --local status.showUntrackedFiles no
 
-#install python environments and set default
-pyenv install 3.10
-pyenv global 3.10
-
-#install python packages
-pip install --upgrade pip jupyter matplotlib numpy pandas scipy scikit-learn 
 
 # Manually install things not availble in brew
 # apps: things calcbar
