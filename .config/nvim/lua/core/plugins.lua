@@ -1,34 +1,39 @@
-local ensure_packer = function()
-  local fn = vim.fn
-  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-  if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-    vim.cmd [[packadd packer.nvim]]
-    return true
-  end
-  return false
-end
+require "paq" {
+    'savq/paq-nvim', -- Let Paq manage itself
+    'rebelot/kanagawa.nvim',
+   { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
+   'ibhagwan/fzf-lua',
+   'echasnovski/mini.statusline',
+   'echasnovski/mini.icons'
+}
 
-local packer_bootstrap = ensure_packer()
+ require'nvim-treesitter.configs'.setup {
+  -- A list of parser names, or "all" (the listed parsers MUST always be installed)
+  ensure_installed = {'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'python'},
 
-return require('packer').startup(function(use)
-  use 'wbthomason/packer.nvim'
-  use "rebelot/kanagawa.nvim"
-  use {'nvim-telescope/telescope.nvim',
-	tag = '0.1.0',
-	requires = { {'nvim-lua/plenary.nvim' } }
-  	}
-  use {'francoiscabrol/ranger.vim', 
-        requires = {{'rbgrouleff/bclose.vim'}}
-    }
+  -- Install parsers synchronously (only applied to `ensure_installed`)
+  sync_install = false,
 
---  use {
---    'junegunn/fzf.vim',
---    requires = { 'junegunn/fzf', run = ':call fzf#install()' }
---  }
-  -- Automatically set up your configuration after cloning packer.nvim
-  -- Put this at the end after all plugins
-  if packer_bootstrap then
-    require('packer').sync()
-  end
-end)
+  -- Automatically install missing parsers when entering buffer
+  -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
+  auto_install = true,
+
+  highlight = {
+    enable = true,
+
+    -- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
+    -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
+    -- the name of the parser)
+    -- list of language that will be disabled
+    disable = { "c", "rust" },
+
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+  },
+}
+
+require('mini.statusline').setup()
+require('mini.icons').setup()
