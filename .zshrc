@@ -14,8 +14,8 @@ zstyle ':vcs_info:*' check-for-changes true # checks if changes in directory
 zstyle ':vcs_info:*' formats '(%F{cyan}%s:%f%F{yellow}%b:%F{blue}%m%F{red}%u%F{green}%c%f) ' #s=git, b=branch, m=stashed, u=unstaged, c=staged
 precmd () { vcs_info }
 setopt prompt_subst #runs the prompt afeter every command
-PROMPT='${vcs_info_msg_0_}%F{112}❯%f ' #left prompt
-RPROMPT='%~' #right prompt
+RPROMPT='${vcs_info_msg_0_}' #right prompt
+PROMPT='%~ %F{112}❯%f ' #left prompt
 
 # History in cache directory:
 # HISTSIZE=10000
@@ -27,7 +27,7 @@ bindkey -v
 export KEYTIMEOUT=1
 
 # Exports
-export PYENV_ROOT="$HOME/.pyenv"
+export PYENV_ROOT="$HOME/.config/pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
