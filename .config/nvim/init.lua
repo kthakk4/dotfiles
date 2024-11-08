@@ -1,5 +1,4 @@
-require("core.plugins") -- "lua/core/plugins"
-
+require("plugins") -- ./lua/plugins
 -- list of vim options: https://neovim.io/doc/user/quickref.html#option-list
 
 -- Map leader to space
@@ -7,7 +6,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Color scheme
-vim.cmd("colorscheme kanagawa")
+vim.cmd("colorscheme catppuccin")
 
 -- Line numbers
 vim.opt.nu = true -- line numbers
@@ -47,7 +46,7 @@ vim.opt.hlsearch = true
 vim.opt.incsearch = true
 
 -- Clear after searching
-vim.keymap.set('n', '<leader>h', ':nohlsearch<CR>')
+-- vim.keymap.set('n', '<leader>h', ':nohlsearch<CR>')
 
 -- Smoother navigation
 vim.opt.signcolumn = "yes"
@@ -74,4 +73,3 @@ vim.keymap.set('n', '<leader>e', ':Lexplore<CR>')
 vim.keymap.set('n', '<leader>b', require('fzf-lua').buffers, {desc = 'fzf Buffers'})
 vim.keymap.set('n', '<leader>p', require('fzf-lua').files, {desc = 'fzf Files'})
 vim.keymap.set('n', '<leader><leader>', require('fzf-lua').oldfiles, {desc = 'fzf Buffers'})
-

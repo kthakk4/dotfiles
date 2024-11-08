@@ -1,5 +1,6 @@
-# Plugins
-source $(brew --prefix)/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+# Set up default directories
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
 
 # nvim is the default editor
 export EDITOR="nvim"
@@ -15,34 +16,76 @@ zstyle ':vcs_info:*' formats '(%F{cyan}%s:%f%F{yellow}%b:%F{blue}%m%F{red}%u%F{g
 precmd () { vcs_info }
 setopt prompt_subst #runs the prompt afeter every command
 RPROMPT='${vcs_info_msg_0_}' #right prompt
-PROMPT='%~ %F{112}❯%f ' #left prompt
+PROMPT='%f %~ %F{112}>%f ' #left prompt n=username, m=host %~=directory
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
+        . "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/homebrew/Caskroom/miniconda/base/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
 
 # History in cache directory:
-# HISTSIZE=10000
-# SAVEHIST=10000
-# HISTFILE=~/.cache/zsh/history
+HISTSIZE=10000
+SAVEHIST=10000
+HISTFILE=$HOME/.cache/zsh/history
+
+# Basic auto/tab complete
+autoload -U compinit
+zstyle ':completion:*' menu select
+zmodload zsh/complist
+compinit
+_comp_options+=(globdots) # include hidden files
 
 # vi mode
 bindkey -v
 export KEYTIMEOUT=1
 
-# Exports
-export PYENV_ROOT="$HOME/.config/pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+# Change cursor shape for different vi modes.
+function zle-keymap-select {
+  if [[ ${KEYMAP} == vicmd ]] ||
+     [[ $1 = 'block' ]]; then
+    echo -ne '\e[1 q'
+  elif [[ ${KEYMAP} == main ]] ||
+       [[ ${KEYMAP} == viins ]] ||
+       [[ ${KEYMAP} = '' ]] ||
+       [[ $1 = 'beam' ]]; then
+    echo -ne '\e[5 q'
+  fi
+}
+zle -N zle-keymap-select
+zle-line-init() {
+    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
+    echo -ne "\e[5 q"
+}
+zle -N zle-line-init
+echo -ne '\e[5 q' # Use beam shape cursor on startup.
+preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
-# Aliases
-alias vim=nvim
-alias zshconfig="nvim ~/.zshrc"
-alias nvimconfig="nvim ~/.config/nvim/init.lua"
+# custom alias
 alias c=clear
-alias lsl="ls -lh"
-alias dotfiles='/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME'
-
+alias ls="ls -lha"
+alias zshconfig="nvim $HOME/.zshrc"
+alias nvimconfig="nvim $XDG_CONFIG_HOME/nvim/init.lua"
+alias dotfiles='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME' #alias for managing dotfiles
+alias dfa='dotfiles add'
+alias dfs='dotfiles status'
+alias dfcm='dotfiles commit -m'
+alias dfpu='dotfiles push -u'
 alias ga='git add'
 alias gs='git status'
+alias gcm='git commit -m'
 alias gpu='git push -u'
 
 # Plugins (some must be at the end)
-source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source <(fzf --zsh)
+conda activate default
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

@@ -1,6 +1,6 @@
 [user]
 	name = Kushan Thakkar
-	email = kushan@
+	email = <>
 [core]
 	editor = nvim
 	pager = less
