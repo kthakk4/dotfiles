@@ -17,7 +17,7 @@ precmd () { vcs_info }
 setopt prompt_subst #runs the prompt afeter every command
 RPROMPT='${vcs_info_msg_0_}' #right prompt
 if [[ -n "$SSH_CONNECTION" ]]; then 
-	PROMPT='%F{'red'}[REMOTE]%f%~ %F{112}▶%f ' #left prompt n=username, m=host %~=directory
+	PROMPT='%F{'yellow'}%f%~ %F{112}▶%f ' #left prompt n=username, m=host %~=directory
 else
 	PROMPT='%f%~ %F{112}▶%f ' 
 fi
