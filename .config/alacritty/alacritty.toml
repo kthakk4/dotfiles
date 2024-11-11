@@ -12,11 +12,11 @@ x = 20
 y = 25
 
 [font]
-size = 18.0
+size = 16.0
 
 [font.normal]
-family = 'Hack Nerd Font Mono'
-#family = 'Iosevka Nerd Font Mono'
+#family = 'Hack Nerd Font Mono'
+family = 'Iosevka Nerd Font Mono'
 
 [general]
 live_config_reload = true

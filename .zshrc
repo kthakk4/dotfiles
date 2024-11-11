@@ -12,14 +12,14 @@ autoload -U colors && colors
 # Custom Prompt - inspired by https://arjanvandergaag.nl/blog/customize-zsh-prompt-with-vcs-info.html
 autoload -Uz vcs_info #vcs_info is where zsh store version control stuff 
 zstyle ':vcs_info:*' check-for-changes true # checks if changes in directory
-zstyle ':vcs_info:*' formats '(%F{cyan}%s:%f%F{yellow}%b:%F{blue}%m%F{red}%u%F{green}%c%f) ' #s=git, b=branch, m=stashed, u=unstaged, c=staged
+zstyle ':vcs_info:*' formats '%F{yellow}%b%F{blue}%m%F{red}%u%F{green}%c%f' #s=git, b=branch, m=stashed, u=unstaged, c=staged
 precmd () { vcs_info }
 setopt prompt_subst #runs the prompt afeter every command
 RPROMPT='${vcs_info_msg_0_}' #right prompt
 if [[ -n "$SSH_CONNECTION" ]]; then 
-	PROMPT='%F{'yellow'}%f%~ %F{112}▶%f ' #left prompt n=username, m=host %~=directory
+	PROMPT='%F{red}%f[%~]%F{112}▶ %f' #left prompt n=username, m=host %~=directory
 else
-	PROMPT='%f%~ %F{112}▶%f ' 
+	PROMPT='%f[%~]%F{112}▶ %f' 
 fi
 
 # >>> conda initialize >>>
@@ -79,7 +79,7 @@ alias gcm='git commit -m'
 alias gpu='git push -u'
 
 # Plugins (some must be at the end)
-source <(fzf --zsh)
 conda activate default
 #source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source <(fzf --zsh)
