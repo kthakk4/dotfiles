@@ -16,7 +16,7 @@ dotfiles config --local status.showUntrackedFiles no
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
 #get homebrew packages
-brew install wget neovim git gh fzf zsh-syntax-highlighting
+brew install wget neovim git gh fzf zsh-syntax-highlighting timg
 brew install --cask miniconda font-hack-nerd-font karabiner-elements alacritty 1password-cli 1password maccy obsidian selfcontrol rectangle microsoft-office
 
 # Create conda environment, download packages

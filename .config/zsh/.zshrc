@@ -1,7 +1,3 @@
-# Set up default directories
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_CACHE_HOME="$HOME/.cache"
-
 # nvim is the default editor
 export EDITOR="nvim"
 export VISUAL="nvim"
@@ -66,7 +62,7 @@ preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 # custom alias
 alias c=clear
 alias ls="ls -lha"
-alias zshconfig="nvim $HOME/.zshrc"
+alias zshconfig="nvim $XDG_CONFIG_HOME/zsh/.zshrc"
 alias nvimconfig="nvim $XDG_CONFIG_HOME/nvim/init.lua"
 alias dotfiles='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME' #alias for managing dotfiles
 alias dfa='dotfiles add'
@@ -79,7 +75,7 @@ alias gcm='git commit -m'
 alias gpu='git push -u'
 
 # Plugins (some must be at the end)
-conda activate default
+conda activate py3.10 
 #source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-#source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source <(fzf --zsh)

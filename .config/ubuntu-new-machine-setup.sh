@@ -9,8 +9,9 @@ mkdir -p .config-backup && dotfiles checkout 2>&1 | egrep "\s+\." | awk {'print 
 dotfiles checkout
 dotfiles config --local status.showUntrackedFiles no
 
-# install zsh 
+# install packages from apt
 sudo apt install zsh
+sudo apt install timg
 
 # install zsh packages
 cho 'deb http://download.opensuse.org/repositories/shells:/zsh-users:/zsh-syntax-highlighting/xUbuntu_22.04/ /' | sudo tee /etc/apt/sources.list.d/shells:zsh-users:zsh-syntax-highlighting.list
