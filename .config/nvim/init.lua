@@ -12,6 +12,10 @@ vim.cmd("colorscheme catppuccin")
 vim.opt.nu = true -- line numbers
 vim.opt.relativenumber = true -- relative line numbers
 
+-- Tab behavior
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+
 -- Configure how new splits should be opened
 vim.opt.splitright = true
 vim.opt.splitbelow = true

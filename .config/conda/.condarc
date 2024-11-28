@@ -4,5 +4,5 @@ channels:
   - pytorch
 auto_update_conda: false
 channel_priority: strict
-changeps1: false
+changeps1: true
 

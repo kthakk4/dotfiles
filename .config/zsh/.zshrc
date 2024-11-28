@@ -1,7 +1,3 @@
-# nvim is the default editor
-export EDITOR="nvim"
-export VISUAL="nvim"
-
 # Enable colors
 autoload -U colors && colors
 
@@ -13,14 +9,10 @@ precmd () { vcs_info }
 setopt prompt_subst #runs the prompt afeter every command
 RPROMPT='${vcs_info_msg_0_}' #right prompt
 if [[ -n "$SSH_CONNECTION" ]]; then 
-	PROMPT='%F{red}%f[%~]%F{112}▶ %f' #left prompt n=username, m=host %~=directory
+	PROMPT='%F{red}%m%f[%~]%F{112}▶ %f' #left prompt n=username, m=host %~=directory
 else
 	PROMPT='%f[%~]%F{112}▶ %f' 
 fi
-
-# >>> conda initialize >>>
-source $XDG_CONFIG_HOME/conda/conda_init.sh 
-# <<< conda initialize <<<
 
 # History in cache directory:
 HISTSIZE=10000
@@ -74,8 +66,12 @@ alias gs='git status'
 alias gcm='git commit -m'
 alias gpu='git push -u'
 
-# Plugins (some must be at the end)
+# >>> conda initialize >>>
+source $XDG_CONFIG_HOME/conda/conda_init.sh 
+# <<< conda initialize <<<
 conda activate py3.10 
+
+# Plugins (some must be at the end)
 #source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source <(fzf --zsh)

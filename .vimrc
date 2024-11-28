@@ -8,6 +8,10 @@ set laststatus=2
 set ruler
 set showmode
 
+" tab behavior
+set tabstop=4
+set shiftwidth=4
+
 " Syntax highlighting
 syntax on
 
